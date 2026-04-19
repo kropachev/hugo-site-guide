@@ -1,6 +1,7 @@
 name: Docs/Wiki Sync
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -20,7 +21,7 @@ jobs:
     if: github.event_name != 'gollum'
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Sync docs to wiki
         uses: newrelic/wiki-sync-action@master
         with:
@@ -35,7 +36,7 @@ jobs:
     if: github.event_name == 'gollum'
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.NEWRELIC_BOT_TOKEN_HUGO_SITE_GUIDE }}
           ref: master
